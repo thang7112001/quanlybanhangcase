@@ -4,7 +4,7 @@
       "id": "u1",
       "name": "Nguyễn Văn Admin",
       "username": "admin",
-      "password": "123",
+      "password": "123456",
       "role": "admin"
     },
     {
@@ -27,6 +27,13 @@
       "username": "thang711",
       "password": "123456",
       "role": "user"
+    },
+    {
+      "id": "6a89",
+      "name": "ChienThang711",
+      "username": "thang7112001",
+      "password": "123456",
+      "role": "user"
     }
   ],
   "products": [
@@ -37,25 +44,28 @@
       "price": 32000000,
       "stock": 5,
       "createdBy": "u1",
-      "createdAt": "2024-07-01T09:00:00.000Z"
+      "createdAt": "2024-07-01T09:00:00.000Z",
+      "image": null
     },
     {
       "id": "p2",
       "name": "Điện thoại iPhone 15 Pro",
       "description": "Điện thoại flagship của Apple, chip A17 Bionic",
       "price": 35000000,
-      "stock": 8,
+      "stock": "6",
       "createdBy": "u1",
-      "createdAt": "2024-07-02T10:30:00.000Z"
+      "createdAt": "2024-07-02T10:30:00.000Z",
+      "image": null
     },
     {
       "id": "p3",
       "name": "Chuột Logitech MX Master 3S",
       "description": "Chuột không dây cao cấp, pin trâu, hỗ trợ đa thiết bị",
       "price": 2500000,
-      "stock": 15,
+      "stock": 13,
       "createdBy": "u1",
-      "createdAt": "2024-07-03T14:00:00.000Z"
+      "createdAt": "2024-07-03T14:00:00.000Z",
+      "image": null
     },
     {
       "id": "p4",
@@ -64,7 +74,18 @@
       "price": 2200000,
       "stock": 12,
       "createdBy": "u1",
-      "createdAt": "2024-07-04T09:15:00.000Z"
+      "createdAt": "2024-07-04T09:15:00.000Z",
+      "image": null
+    },
+    {
+      "id": "5ea6",
+      "name": "Điện thoại Samsung S25 Ultra",
+      "description": "new",
+      "price": "25000000",
+      "stock": "10",
+      "createdBy": "u1",
+      "createdAt": "2025-08-20T12:41:14.485Z",
+      "image": null
     }
   ],
   "orders": [
@@ -155,6 +176,30 @@
       ],
       "status": "pending",
       "createdAt": "2025-08-13T13:48:28.883Z"
+    },
+    {
+      "id": "2329",
+      "userId": "1d10",
+      "items": [
+        {
+          "productId": "p2",
+          "quantity": 1
+        }
+      ],
+      "status": "pending",
+      "createdAt": "2025-08-20T11:24:39.569Z"
+    },
+    {
+      "id": "8bc8",
+      "userId": "6a89",
+      "items": [
+        {
+          "productId": "p3",
+          "quantity": 2
+        }
+      ],
+      "status": "pending",
+      "createdAt": "2025-08-20T13:45:07.999Z"
     }
   ]
 }

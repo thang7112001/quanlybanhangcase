@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
+import { Button, Table, TableBody, TableCell, TableHead, TableRow,Container, Paper, Typography, Box, IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
 import service from '../../api/service';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function ProductList() {
     const [products, setProducts] = useState([]);
@@ -12,47 +15,71 @@ export default function ProductList() {
     }, []);
 
     const handleDelete = async (id) => {
-        if (window.confirm('Xoá sản phẩm này?')) {
+        const orders = await service.orders.getAll();
+        const isInOrder = orders.some(o => o.items.some(i => i.productId === id));
+
+        if (isInOrder) {
+            alert('Không thể xoá sản phẩm này vì đã có trong đơn hàng!');
+            return;
+        }
+
+        if (window.confirm('Bạn có chắc muốn xoá sản phẩm này?')) {
             await service.products.remove(id);
             setProducts(products.filter(p => p.id !== id));
         }
     };
 
+
     return (
-        <div>
-            <h2>Quản lý sản phẩm</h2>
-            {user?.role === 'admin' && (
-                <Button variant="contained" component={Link} to="/admin/products/add">Thêm sản phẩm</Button>
-            )}
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Tên</TableCell>
-                        <TableCell>Mô tả</TableCell>
-                        <TableCell>Giá</TableCell>
-                        <TableCell>Số lượng</TableCell>
-                        <TableCell>Hành động</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {products.map(p => (
-                        <TableRow key={p.id}>
-                            <TableCell>{p.name}</TableCell>
-                            <TableCell>{p.description}</TableCell>
-                            <TableCell>{p.price}</TableCell>
-                            <TableCell>{p.stock}</TableCell>
-                            <TableCell>
-                                {user?.role === 'admin' && (
-                                    <>
-                                        <Button component={Link} to={`/admin/products/edit/${p.id}`}>Sửa</Button>
-                                        <Button color="error" onClick={() => handleDelete(p.id)}>Xoá</Button>
-                                    </>
-                                )}
-                            </TableCell>
+        <Container sx={{ py: 4 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+                <Typography variant="h4">Quản lý sản phẩm</Typography>
+                {user?.role === 'admin' && (
+                    <Button
+                        variant="contained"
+                        component={Link}
+                        to="/admin/products/add"
+                        startIcon={<AddIcon />}
+                    >
+                        Thêm sản phẩm
+                    </Button>
+                )}
+            </Box>
+            <Paper>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell sx={{ fontWeight: 'bold' }}>Tên</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold' }}>Mô tả</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold' }}>Giá</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold' }}>Số lượng</TableCell>
+                            <TableCell align="right" sx={{ fontWeight: 'bold' }}>Hành động</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
+                    </TableHead>
+                    <TableBody>
+                        {products.map(p => (
+                            <TableRow key={p.id} hover>
+                                <TableCell>{p.name}</TableCell>
+                                <TableCell>{p.description}</TableCell>
+                                <TableCell>{new Intl.NumberFormat('vi-VN').format(p.price)} ₫</TableCell>
+                                <TableCell>{p.stock}</TableCell>
+                                <TableCell align="right">
+                                    {user?.role === 'admin' && (
+                                        <>
+                                            <IconButton component={Link} to={`/admin/products/edit/${p.id}`} color="primary">
+                                                <EditIcon />
+                                            </IconButton>
+                                            <IconButton color="error" onClick={() => handleDelete(p.id)}>
+                                                <DeleteIcon />
+                                            </IconButton>
+                                        </>
+                                    )}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
+        </Container>
     );
 }

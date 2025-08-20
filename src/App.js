@@ -17,10 +17,15 @@ import Register from './pages/Auth/Register';
 
 import NotFound from './pages/NotFound/NotFound';
 import PrivateRoute from './components/PrivateRoute';
+import {ThemeProvider} from "@mui/material";
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme'
 
 export default function App() {
     return (
         <>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
             <Header/>
             <div style={{padding: '20px'}}>
                 <Routes>
@@ -46,6 +51,7 @@ export default function App() {
                 </Routes>
             </div>
             <Footer/>
+            </ThemeProvider>
         </>
     );
 }
