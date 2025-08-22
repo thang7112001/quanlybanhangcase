@@ -54,12 +54,24 @@ export default function ProductDetail() {
             <Paper sx={{ p: 4 }}>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={6}>
+                        <Box sx={{
+                            width: '100%',
+                            maxWidth: '450px',
+                            aspectRatio: '4/3',
+                            border: '1px solid #eee',
+                            borderRadius: 2,
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            overflow: 'hidden'
+                        }}>
                         <Box
                             component="img"
-                            sx={{ width: '100%', height: 'auto', borderRadius: 2, objectFit: 'cover' }}
+                            sx={{ width: '100%', maxHeight: '100%', objectFit: 'contain' }}
                             src={product.image || placeholderImage}
                             alt={product.name}
                         />
+                            </Box>
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <Typography variant="h4" gutterBottom>{product.name}</Typography>

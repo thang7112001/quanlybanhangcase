@@ -45,7 +45,7 @@
       "stock": 5,
       "createdBy": "u1",
       "createdAt": "2024-07-01T09:00:00.000Z",
-      "image": null
+      "image": "/ProductPicture/laptop.png"
     },
     {
       "id": "p2",
@@ -55,7 +55,7 @@
       "stock": "6",
       "createdBy": "u1",
       "createdAt": "2024-07-02T10:30:00.000Z",
-      "image": null
+      "image": "/ProductPicture/iphone.jpg"
     },
     {
       "id": "p3",
@@ -65,7 +65,7 @@
       "stock": 13,
       "createdBy": "u1",
       "createdAt": "2024-07-03T14:00:00.000Z",
-      "image": null
+      "image": "/ProductPicture/mouse.jpg"
     },
     {
       "id": "p4",
@@ -75,7 +75,7 @@
       "stock": 12,
       "createdBy": "u1",
       "createdAt": "2024-07-04T09:15:00.000Z",
-      "image": null
+      "image": "/ProductPicture/keyboard.jpg"
     },
     {
       "id": "5ea6",
@@ -85,7 +85,7 @@
       "stock": "10",
       "createdBy": "u1",
       "createdAt": "2025-08-20T12:41:14.485Z",
-      "image": null
+      "image": "/ProductPicture/samsung.jpg"
     }
   ],
   "orders": [
