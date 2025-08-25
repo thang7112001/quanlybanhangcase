@@ -14,6 +14,11 @@ export default function Login() {
     const { login } = useAuth();
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            alert("Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu!");
+            return;
+        }
+
         const user = await service.auth.login(username, password);
         if (user) {
             login(user);
