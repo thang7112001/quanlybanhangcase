@@ -12,6 +12,4 @@ export const removeItem = (key) => {
     localStorage.removeItem(key);
 };
 
-export const clearStorage = () => {
-    localStorage.clear();
-};
+
